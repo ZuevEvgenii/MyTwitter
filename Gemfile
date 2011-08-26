@@ -9,8 +9,11 @@ gem 'sqlite3'
 
 gem "gravatar_image_tag", "~> 1.0.0"
 
+gem 'will_paginate'
+
 group :development do
   gem 'rspec-rails'
+  gem 'faker'
 end
 
 group :test do
