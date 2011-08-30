@@ -50,14 +50,32 @@ describe "Users" do
     end
 
     describe "success" do
+      before(:each) do
+        @user = Factory(:user)
+        integration_sign_in @user
+      end
+
       it "should sign a user in and out" do
-        user = Factory(:user)
-        integration_sign_in user
         controller.should be_signed_in
         click_link "Sign out"
         controller.should_not be_signed_in
       end
+
+      describe "follow/unfollow" do
+        before(:each) do
+          @other_user = Factory(:user, :email => Factory.next(:email))
+        end
+
+        it "should can follow/unfollow to user" do
+          visit user_path(@other_user)
+          response.should have_selector("#relationship_submit", :value => "Follow")
+          click_button
+          response.should have_selector("#relationship_submit", :value => "Unfollow")
+        end
+      end
     end
   end
+
+
 end
 
