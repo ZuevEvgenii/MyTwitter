@@ -247,3 +247,11 @@ form.new_micropost textarea {
   margin-bottom: 0;
 }
 
+span#counterText.green {
+  color: #009900;
+}
+
+span#counterText.red {
+  color: #FF0000;
+}
+
